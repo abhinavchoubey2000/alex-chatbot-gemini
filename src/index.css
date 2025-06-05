@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+/* Only show the thumb; hide the track */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5); /* customize as needed */
+    border-radius: 4px;
+  }
+  
+  /* Firefox support */
+  * {
+    scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
+    scrollbar-width: thin;
+  }
+  
