@@ -22,8 +22,8 @@ Alex is a modern AI chatbot powered by Google's Gemini Pro, built with Vite, Rea
 
 - **Modern UI Components**:
   - Responsive Chakra UI components
-  - Beautiful animations with Framer Motion
-  - Markdown rendering for AI responses
+  - Chat animations with Chakra UI Transition
+  - Markdowns rendering for AI responses
   - Clean and intuitive chat interface
 
 ## 🛠️ Tech Stack
@@ -32,12 +32,14 @@ Alex is a modern AI chatbot powered by Google's Gemini Pro, built with Vite, Rea
   - React 19.1.0 (Latest)
   - TypeScript 5.8.3
   - Vite 6.3.5
+  - Node 20.11.1 (Backend)
+  - Express 5.1.0 (Backend)
+  - Cors 2.8.5 (Backend)
 
 - **UI/UX**:
   - Chakra UI 3.19.2
-  - Framer Motion 12.16.0
-  - React Icons 5.5.0
-  - Emotion (CSS-in-JS)
+  - Lucide React 0.511.0
+  - Chakra UI Transition 2.1.0
 
 - **API Integration**:
   - Axios with retry support
@@ -54,52 +56,59 @@ Alex is a modern AI chatbot powered by Google's Gemini Pro, built with Vite, Rea
 ### Installation
 
 1. **Clone the repository**
-   ```powershell
+   ```powershell/cmd
    git clone https://github.com/abhinavchoubey2000/alex-chatbot-gemini.git
    cd alex-chatbot-gemini
    ```
 
-2. **Install dependencies**
-   ```powershell
+2. **Install dependencies for frontend**
+   ```powershell/cmd
    npm install
    # or
    yarn
    ```
 
-3. **Set up environment variables**
-   - Create a `.env` file in the root directory
-   - Add your Gemini API key:
-   ```env
-   VITE_GEMINI_API_KEY=your_api_key_here   # Get this from Google AI Studio
+3. **Install dependencies for backend**
+   ```powershell/cmd
+   cd backend
+   npm install
+   # or
+   yarn
    ```
 
-4. **Start development server**
-   ```powershell
+4. **Set up environment variables for frontend**
+   - Create a `.env` file in the root directory
+   - Add your Backend url:
+   ```env
+   Backend_URL=your_backend_url_here   # Get this from express server
+   ```
+
+5. **Set up environment variables for backend**
+   - Create a `.env` file in the ./backend directory
+   - Add your port number and gemini api key:
+   ```env
+   PORT=your_port_number_here   # The port you have selected
+   GEMINI_API_KEY=your_gemini_api_key_here  # Get this from google AI studio
+   ```
+
+6. **Start development server of frontend**
+   ```powershell/cmd
    npm run dev
    # or
    yarn dev
    ```
    The app will be available at `http://localhost:5173`
 
-5. **Build for production**
-   ```powershell
-   npm run build
+7. **Start development server of backend**
+   ```powershell/cmd
+   cd /backend
+   npm run dev
    # or
-   yarn build
+   yarn dev
    ```
+   The app will be available at `http://localhost:<port_number_you_have_given_in_.env_file>`
 
-## 🎨 Theme System
 
-The application uses Chakra UI's theme provider with custom theme extensions. Themes are implemented using CSS variables and can be switched instantly without page reload.
-
-### Theme Properties
-
-Each theme includes:
-- Primary color scheme
-- Background colors
-- Text colors
-- Accent colors
-- Chat bubble styles
 
 ### How to Switch Themes
 
@@ -131,12 +140,18 @@ Use the theme selector in the top navigation bar to switch between:
 ```
 alex-chatbot-gemini/
 ├── src/
-│   ├── components/     # React components
-│   ├── hooks/         # Custom React hooks
-│   ├── theme/         # Theme configurations
-│   ├── utils/         # Utility functions
-│   └── services/      # API services
-├── public/            # Static assets
+│   ├── assets/     # Images: logo, overlays
+│   ├── components/         # Components: chatbox, prompt-input, header etc 
+│   ├── components/ui         # Theme configurations
+│   ├── App.tsx
+|   ├── index.css    # Stylesheet: Fonts, Scrollbar stylings
+|   ├── main.tsx    # The main file    
+│   └── types.d.ts      # Types and Interfaces of all the components
+├── backend/
+│   ├── .env     # Environment variables file for backend
+│   └── server.js      # Backend server
+├── public/            # favicon
+├── .env            # Envrionment variables file for frontend
 └── package.json       # Dependencies
 ```
 
@@ -145,7 +160,9 @@ alex-chatbot-gemini/
 Required environment variables for production:
 
 ```env
-VITE_GEMINI_API_KEY=your_gemini_api_key    # Required for AI functionality
+Backend_URL=your_url_link    # Required for connection with backend
+PORT=your_port_number   # Required to start the server on a particular port number
+GEMINI_API_KEY=your_gemini_api_key  # Required to connect with google gemini modal
 ```
 
 ## ⚡ Performance
